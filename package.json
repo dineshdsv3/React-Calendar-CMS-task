@@ -11,14 +11,27 @@
     "react-big-calendar": "^0.25.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "semantic-ui-css": "^2.4.1"
+    "semantic-ui-css": "^2.4.1",
+    "superagent": "^5.2.2"
   },
-  "author" :"Satya Venkata Dinesh Danda",
+  "author": "Satya Venkata Dinesh Danda",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

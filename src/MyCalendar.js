@@ -17,7 +17,7 @@ class MyCalendar extends React.Component {
 					localizer={localizer}
 					startAccessor="start"
 					endAccessor="end"
-					style={{ height: '420px' }}
+					style={{ height: '700px' }}
 					events={[]}
 				/>
 			</div>
