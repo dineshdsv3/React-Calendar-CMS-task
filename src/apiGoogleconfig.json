@@ -1,0 +1,7 @@
+{
+    "clientId": "1006383487608-tdhp6i1g4035enped4r2oks428nhve8i.apps.googleusercontent.com",
+    "apiKey": "AIzaSyCU9-tTx2q9qWoftjuMnXwxPXwmrYXyRhU",
+    "scope": "https://www.googleapis.com/auth/calendar",
+    "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
+  }
+
