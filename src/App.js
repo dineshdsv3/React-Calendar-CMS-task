@@ -1,12 +1,13 @@
 import React from 'react';
-import MyCalendar from './MyCalendar';
+import MyCal1 from './MyCal1'
+
+import './css/main.scss'
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>Hello World</h1>
-				<MyCalendar />
+				<MyCal1 />
 			</div>
 		);
 	}
