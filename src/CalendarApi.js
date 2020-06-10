@@ -33,7 +33,7 @@ class CalendarApi extends React.Component {
 		if (ApiCalendar.sign) {
 			const resp = await ApiCalendar.listUpcomingEvents(10);
 			const events = resp.result.items.map((ele) => {
-				return { start: ele.start.dateTime, end: ele.end.dateTime, title: ele.summary };
+				return { start: ele.start.dateTime, end: ele.end.dateTime, title: ele.summary,color: '#808080' };
 			});
 			this.setState({
 				events

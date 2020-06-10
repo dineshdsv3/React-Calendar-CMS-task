@@ -6,7 +6,14 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 class MyCal1 extends React.Component {
 	state = {
-		events: [{ start: '2020-06-12T10:00:00+05:30', end: '2020-06-12T15:00:00+05:30', title: 'Sample 1' }],
+		events: [
+			{
+				start: '2020-06-10T10:00:00',
+				end: '2020-06-10T16:00:00',
+				rendering: 'background',
+				color: 'orange'
+			},
+		],
 	};
 
 	componentWillReceiveProps(nextProps) {
@@ -26,13 +33,52 @@ class MyCal1 extends React.Component {
 		return (
 			<div>
 				<div className="ui container center aligned">
-					<div className="ui input">
-						<label htmlFor="startTime">Start Time</label>
-						<input type="time" id="startTime" name="startTime" onChange={this.handleChange} />
-					</div>
-					<div className="ui input">
-						<label htmlFor="endTime">End Time</label>
-						<input type="time" id="endTime" name="endTime" onChange={this.handleChange} />
+					<div className="ui mini form">
+						<div className="field">
+							<div className="fields">
+								<div className="four wide field">
+									<div className="ui input">
+										<label htmlFor="startTime">Start Time</label>
+										<input
+											type="time"
+											id="startTime"
+											name="startTime"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</div>
+								<div className="four wide field">
+									<div className="ui input">
+										<label htmlFor="endTime">End Time</label>
+										<input type="time" id="endTime" name="endTime" onChange={this.handleChange} />
+									</div>
+								</div>
+							</div>
+							<div className="fields">
+								<div className="four wide field">
+									<div className="ui input">
+										<label htmlFor="startTimeWeekend">Start Time</label>
+										<input
+											type="time"
+											id="startTimeWeekend"
+											name="startTimeWeekend"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</div>
+								<div className="four wide field">
+									<div className="ui input">
+										<label htmlFor="endTimeWeekend">End Time</label>
+										<input
+											type="time"
+											id="endTimeWeekend"
+											name="endTimeWeekend"
+											onChange={this.handleChange}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -45,6 +91,7 @@ class MyCal1 extends React.Component {
 							center: 'title',
 							right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
 						}}
+						
 						events={this.state.events}
 						plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
 					/>
