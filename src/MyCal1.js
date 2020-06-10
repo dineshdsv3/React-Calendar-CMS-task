@@ -3,18 +3,15 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { getEvents } from './GoogleCal';
 
 class MyCal1 extends React.Component {
 	state = {
 		events: [],
 	};
-
 	componentDidMount() {
-		getEvents((events) => {
-			this.setState({ events });
-        });
+		this.setState({events:this.props.events})
 	}
+	
 	render() {
 		return (
             <div className='demo-app-calendar'>
