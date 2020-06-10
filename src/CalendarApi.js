@@ -50,7 +50,7 @@ class CalendarApi extends React.Component {
 	};
 
 	render() {
-		return this.state.sign ? (
+		return !this.state.sign ? (
 			<div>
 				<MyCal1 events={this.state.events} />
 			</div>
