@@ -51,8 +51,6 @@ class CalendarApi extends React.Component {
 	};
 
 	render() {
-		console.log(this.state.isLoading)
-		console.log(`sign ${this.state.sign}`)
 		return !this.state.isLoading && !this.state.sign ? (
 			<div className="ui main text container">
 				<div className="ui container">
@@ -63,7 +61,11 @@ class CalendarApi extends React.Component {
 			</div>
 		) : (this.state.sign ? <div>
 			<MyCal1 events={this.state.events} />
-		</div>:('is loading'))  
+		</div>:(<div>
+			<div className="ui container">
+				<img src={require('./Assets/spinner.gif')}/>
+			</div>
+		</div>))  
 	}
 }
 

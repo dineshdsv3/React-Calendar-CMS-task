@@ -58,16 +58,13 @@ class MyCal1 extends React.Component {
 		if (this.state.startTime) {
 			// console.log('weekDay Start time' + this.state.startTime);
 			if (weekDay > 0 && weekDay < 6) {
-				// console.log(`main loop ${weekDay}`)
 				if (weekDay <= 5) {
-					console.log(`less cndttn ${weekDay}`);
 					for (let i = 5; i > weekDay; i--) {
-						// console.log(`less loop ${weekDay}`)
 						let eventObj = {
 							start: '',
 							end: '',
 							rendering: 'background',
-							color: 'yellow',
+							color: '#FFFF00',
 							key: 1,
 						};
 						eventObj.start = `${year}-${month + 1 < 10 ? `0${month + 1}` : month + 1}-${
@@ -76,18 +73,15 @@ class MyCal1 extends React.Component {
 						eventObj.end = `${year}-${month + 1 < 10 ? `0${month + 1}` : month + 1}-${
 							date + (i - weekDay) < 10 ? `0${date + (i - weekDay)}` : date + (i - weekDay)
 						}T${this.state.endTime}:${secs}`;
-						eventObj.key += i;
 						arr.push(eventObj);
 					}
 				}
 				for (let i = 0; i < weekDay; i++) {
-					console.log(`more loop ${weekDay}`);
 					let eventObj = {
 						start: '',
 						end: '',
 						rendering: 'background',
-						color: 'yellow',
-						key: 99,
+						color: '#FFFF00',
 					};
 					eventObj.start = `${year}-${month + 1 < 10 ? `0${month + 1}` : month + 1}-${
 						date - i < 10 ? `0${date - i}` : date - i
@@ -169,7 +163,6 @@ class MyCal1 extends React.Component {
 				</div>
 
 				<div className="demo-app-calendar">
-					{console.log(this.state.events)}
 					<FullCalendar
 						defaultView="timeGridWeek"
 						header={{
