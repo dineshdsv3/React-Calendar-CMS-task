@@ -12,12 +12,12 @@ class MyCal1 extends React.Component {
 		hours: '',
 		minutes: '',
 		events: [
-			{
-				start: '2020-06-10T10:00:00',
-				end: '2020-06-10T16:00:00',
-				rendering: 'background',
-				color: 'orange',
-			},
+			// {
+			// 	start: '2020-06-10T10:00:00',
+			// 	end: '2020-06-10T16:00:00',
+			// 	rendering: 'background',
+			// 	color: 'orange',
+			// },
 		],
 		startTime: '',
 		startTimeWeekend: '',
@@ -57,15 +57,12 @@ class MyCal1 extends React.Component {
 
 	setEvents = (e) => {
 		e.preventDefault();
-		console.log(this.state);
 		let year = 2020;
 		let month = '06';
 		let date = this.state.date;
 		let secs = '00';
 		let weekDay = this.state.weekday;
-
 		let arr = [];
-		// 	start: '2020-06-10T10:00:00',	end: '2020-06-10T16:00:00',
 		if (this.state.startTime) {
 			// console.log('weekDay Start time' + this.state.startTime);
 			if (weekDay > 0 && weekDay < 6) {
@@ -79,6 +76,7 @@ class MyCal1 extends React.Component {
 							end: '',
 							rendering: 'background',
 							color: 'orange',
+							key: 1
 						};
 						eventObj.start = `${year}-${month}-${
 							date + (i - weekDay) < 10 ? `0${date + (i - weekDay)}` : date + (i - weekDay)
@@ -86,6 +84,7 @@ class MyCal1 extends React.Component {
 						eventObj.end = `${year}-${month}-${
 							date + (i - weekDay) < 10 ? `0${date + (i - weekDay)}` : date + (i - weekDay)
 						}T${this.state.endTime}:${secs}`;
+						eventObj.key += i
 						arr.push(eventObj);
 					}
 				}
@@ -96,6 +95,7 @@ class MyCal1 extends React.Component {
 						end: '',
 						rendering: 'background',
 						color: 'orange',
+						key: 99
 					};
 					eventObj.start = `${year}-${month}-${date - i < 10 ? `0${date - i}` : date - i}T${
 						this.state.startTime
@@ -103,11 +103,23 @@ class MyCal1 extends React.Component {
 					eventObj.end = `${year}-${month}-${date - i < 10 ? `0${date - i}` : date - i}T${
 						this.state.endTime
 					}:${secs}`;
-					
+					eventObj.key += i
 					arr.push(eventObj);
 				}
 			}
+			
+			arr.map((ele) => {
+				console.log(ele)
+				this.setState({
+					events: [...this.state.events, ele],
+					
+				});
+			});
+			// const event = arr.map((ele) => {
+			// 	return { start: ele.start, end: ele.end, rendering: 'background', color: 'orange' };
+			// });
 			console.log(arr);
+			// console.log(event);
 		}
 		if (this.state.startTimeWeekend) {
 			console.log('weekend Time' + this.state.startTimeWeekend);
@@ -166,22 +178,22 @@ class MyCal1 extends React.Component {
 								</div>
 							</div>
 						</div>
-						<button className="ui fluid button" onClick={this.setEvents}>
+						<button className="ui fluid green button" onClick={this.setEvents}>
 							Submit Timings
 						</button>
 					</div>
 				</div>
 
 				<div className="demo-app-calendar">
-					{/* {console.log(this.state.date)} */}
+					{console.log(this.state.events)}
 					<FullCalendar
 						defaultView="timeGridWeek"
 						header={{
 							left: 'prev,next today',
 							center: 'title',
-							right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+							right: 'timeGridWeek,timeGridDay',
 						}}
-						height="700px"
+						height="auto"
 						events={this.state.events}
 						plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
 					/>
