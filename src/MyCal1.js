@@ -108,6 +108,7 @@ class MyCal1 extends React.Component {
 		return (
 			<div>
 				<div className="ui container center aligned">
+					<h1>Please provide time in 24-hour format</h1>
 					<div className="ui mini form">
 						<div className="field">
 							<div className="fields">
