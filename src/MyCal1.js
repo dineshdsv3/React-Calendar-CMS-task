@@ -43,6 +43,7 @@ class MyCal1 extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log(nextProps)
 		nextProps.events.map((ele) => {
 			this.setState({
 				events: [...this.state.events, ele],
