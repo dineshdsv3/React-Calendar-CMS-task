@@ -50,7 +50,7 @@ class Footer extends React.Component {
 						</div>
 						<div className="four wide column">
 							<h4 className="ui inverted header">CONNECT WITH US</h4>
-							<p>
+							<div>
 								<div className="ui mini image">
 									<img src={require('./Assets/social_linkedin.png')} />
 								</div>
@@ -63,8 +63,8 @@ class Footer extends React.Component {
 								<div className="ui mini image">
 									<img src={require('./Assets/social_youtube_default.png')} />
 								</div>
-							</p>
-							<p> &copy; Copyright Conrati 2018</p>
+							</div>
+							<span> &copy; Copyright Conrati 2018</span>
 						</div>
 					</div>
 				</div>

@@ -7,10 +7,12 @@ class CalendarApi extends React.Component {
 		super(props);
 		this.state = {
 			events: [],
-			sign :ApiCalendar.sign
+			sign: ApiCalendar.sign,
+			isLoading: true,
 		};
 		ApiCalendar.onLoad(() => {
 			this.signUpdate(ApiCalendar.sign);
+			this.setState({ isLoading: false });
 			// console.log(`Api calendar is ${ApiCalendar.sign}`)
 			ApiCalendar.listenSign(this.signUpdate.bind(this));
 		});
@@ -19,27 +21,25 @@ class CalendarApi extends React.Component {
 	signUpdate = (sign) => {
 		// console.log(`Sign update is ${sign}`)
 		this.setState({
-			sign
-		})
+			sign,
+		});
 		this.listenEvents();
-	}
+	};
 
 	componentDidMount() {
-		this.listenEvents()
+		this.listenEvents();
 	}
-
 
 	listenEvents = async () => {
 		if (ApiCalendar.sign) {
 			const resp = await ApiCalendar.listUpcomingEvents(10);
 			const events = resp.result.items.map((ele) => {
-				return { start: ele.start.dateTime, end: ele.end.dateTime, title: ele.summary,color: '#808080' };
+				return { start: ele.start.dateTime, end: ele.end.dateTime, title: ele.summary, color: '#808080' };
 			});
 			this.setState({
-				events
+				events,
 			});
-			console.log(this.state.events)
-			
+			console.log(this.state.events);
 		}
 	};
 
@@ -51,17 +51,19 @@ class CalendarApi extends React.Component {
 	};
 
 	render() {
-		return this.state.sign ? (
-			<div>
-				<MyCal1 events={this.state.events} />
+		console.log(this.state.isLoading)
+		console.log(`sign ${this.state.sign}`)
+		return !this.state.isLoading && !this.state.sign ? (
+			<div className="ui main text container">
+				<div className="ui container">
+					<button className="ui green button" onClick={(e) => this.handleClickItem(e, 'sign-in')}>
+						Google sign-in
+					</button>
+				</div>
 			</div>
-		) : (
-			<div>
-				<button className="ui green button" onClick={(e) => this.handleClickItem(e, 'sign-in')}>
-					Google sign-in
-				</button>
-			</div>
-		);
+		) : (this.state.sign ? <div>
+			<MyCal1 events={this.state.events} />
+		</div>:('is loading'))  
 	}
 }
 
