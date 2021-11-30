@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import moment from 'moment';
 
 class MyCal1 extends React.Component {
 	state = {
@@ -20,7 +21,7 @@ class MyCal1 extends React.Component {
 	};
 
 	componentDidMount() {
-		let presentDate = new Date();
+		let presentDate = new Date()
 		let date = presentDate.getDate();
 		console.log(date);
 		let weekday = presentDate.getDay();
@@ -44,12 +45,12 @@ class MyCal1 extends React.Component {
 
 	handleChange = (e) => {
 		e.preventDefault();
-		this.setState({ [e.target.name]: e.target.value });
+		this.setState({[e.target.name]: e.target.value });
 	};
 
 	setEvents = (e) => {
 		e.preventDefault();
-		let year = 2020;
+		let year = 2021;
 		let month = this.state.month;
 		let date = this.state.date;
 		let secs = '00';
@@ -57,7 +58,7 @@ class MyCal1 extends React.Component {
 		let arr = [];
 		if (this.state.startTime) {
 			// console.log('weekDay Start time' + this.state.startTime);
-			if (weekDay > 0 && weekDay < 6) {
+			if (weekDay > 0 && weekDay <= 5) {
 				if (weekDay <= 5) {
 					for (let i = 5; i > weekDay; i--) {
 						let eventObj = {
@@ -95,12 +96,53 @@ class MyCal1 extends React.Component {
 			}
 
 			const event = arr.map((ele) => {
-				return { start: ele.start, end: ele.end, rendering: 'background', color: 'orange' };
+				return { start: ele.start, end: ele.end,  title: "", color: 'orange' };
 			});
 			this.setState({ events: [...this.state.events, ...event] });
+			console.log(this.state.events, "events", event)
 		}
 		if (this.state.startTimeWeekend) {
 			console.log('weekend Time' + this.state.startTimeWeekend);
+			let thisWeekSunday = moment().day("sunday").format("MM-DD-YYYY")
+			let thisWeekSaturday = moment().weekday(6).format("MM-DD-YYYY")
+
+			console.log(thisWeekSunday, thisWeekSaturday, "check this");
+			
+			let timeStartAddedSunday = moment(thisWeekSunday+ " " +this.state.startTimeWeekend).format()
+			let timeEndAddedSunday = moment(thisWeekSunday+ " " +this.state.endTimeWeekend).format()
+			
+			let timeStartAddedSaturday = moment(thisWeekSaturday+ " " +this.state.startTimeWeekend).format()
+			let timeEndAddedSaturday = moment(thisWeekSaturday+ " " +this.state.endTimeWeekend).format()
+
+			console.log(timeStartAddedSunday, "checkdate");
+
+
+			for (let i = 0; i < 2; i++){
+				let eventObj = {
+						start: '',
+						end: '',
+						title: '',
+						color: '',
+				};
+				if (i === 0) {
+					
+					eventObj.start = timeStartAddedSunday
+					eventObj.end = timeEndAddedSunday
+				}
+				if (i === 1) {
+					eventObj.start = timeStartAddedSaturday
+					eventObj.end = timeEndAddedSaturday
+				}
+				arr.push(eventObj);
+			}
+			const eventWeekends = arr.map((ele) => {
+				return { start: ele.start, end: ele.end,  title: "", color: 'orange' };
+			});
+
+			this.setState({ events: [...this.state.events, ...eventWeekends] });
+			console.log(this.state.events, "events", eventWeekends)
+			
+			
 		}
 	};
 

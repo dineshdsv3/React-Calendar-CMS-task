@@ -19,7 +19,7 @@ class CalendarApi extends React.Component {
 	}
 
 	signUpdate = (sign) => {
-		// console.log(`Sign update is ${sign}`)
+		console.log(`Sign update is ${sign}`)
 		this.setState({
 			sign,
 		});
@@ -51,6 +51,7 @@ class CalendarApi extends React.Component {
 	};
 
 	render() {
+		console.log(this.state.isLoading, this.state.sign, "check");
 		return !this.state.isLoading && !this.state.sign ? (
 			<div className="ui main text container">
 				<div className="ui container">
